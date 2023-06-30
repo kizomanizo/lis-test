@@ -17,6 +17,7 @@ async function list(req, res, next) {
     });
     return orders;
   } catch (error) {
+    console.error(error);
     apiHelper.failure(res, 404, "Error listing orders");
   } finally {
     await prisma.$disconnect();
@@ -45,7 +46,8 @@ async function save(req, res, next) {
 
     return savedOrder;
   } catch (error) {
-    apiHelper.failure(res, 404, "Error saving an order");
+    console.error(error);
+    apiHelper.failure(res, 404, error.message);
   } finally {
     await prisma.$disconnect();
   }
@@ -63,6 +65,7 @@ async function search(req, _res, next) {
     });
     return order;
   } catch (error) {
+    console.error(error);
     apiHelper.failure(res, 404, "Error searching order");
     next(error);
   }
