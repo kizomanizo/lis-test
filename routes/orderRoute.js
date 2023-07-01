@@ -4,7 +4,7 @@ const Controller = require("../controllers/orderController");
 const checkLogin = require("../helpers/basicAuth");
 
 Router.route("/").get(checkLogin, Controller.list);
-Router.route("/").post(checkLogin, Controller.save);
+Router.route("/").post(Controller.save);
 Router.route("/:uuid").get(checkLogin, Controller.search);
 
 module.exports = Router;
